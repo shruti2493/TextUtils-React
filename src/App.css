@@ -7,6 +7,15 @@
   pointer-events: none;
 }
 
+.container {
+  max-width: 100%;
+  margin: auto;
+  height: 100vh;
+}
+
+.bg-dark1 {
+  background-color: #041345;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -26,6 +35,10 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.blank {
+  color: red;
 }
 
 @keyframes App-logo-spin {

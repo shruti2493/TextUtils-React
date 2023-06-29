@@ -39,10 +39,12 @@ export default function TextForm(props) {
 
         // Select the text field
         copyText.select();
-        copyText.setSelectionRange(0, 99999); // For mobile devices
+        // copyText.setSelectionRange(0, 99999); // For mobile devices
 
         // Copy the text inside the text field
         navigator.clipboard.writeText(copyText.value);
+
+        document.getSelection().removeAllRanges();
 
         props.showAlert('Copied text', 'success');
 
@@ -69,30 +71,30 @@ export default function TextForm(props) {
                     rows="8"
                 ></textarea>
             </div>
-            <button className="btn btn-sm btn-primary me-2" onClick={handleUpClick}>
+            <button disabled={text.length === 0} className="btn btn-sm btn-primary me-2 my-1" onClick={handleUpClick}>
                 Convert to uppercase
             </button>
-            <button className="btn btn-sm btn-primary me-2" onClick={handleLoClick}>
+            <button disabled={text.length === 0} className="btn btn-sm btn-primary me-2 my-1" onClick={handleLoClick}>
                 Convert to lowercase
             </button>
-            <button className="btn btn-sm btn-primary me-2" onClick={handleClearClick}>
+            <button disabled={text.length === 0} className="btn btn-sm btn-primary me-2 my-1" onClick={handleClearClick}>
                 Clear Text
             </button>
-            <button className="btn btn-sm btn-primary me-2" onClick={handleSeClick}>
+            <button disabled={text.length === 0} className="btn btn-sm btn-primary me-2 my-1" onClick={handleSeClick}>
                 Convert to sentencecase
             </button>
-            <button className="btn btn-sm btn-primary me-2" onClick={handleCopy}>
+            <button disabled={text.length === 0} className="btn btn-sm btn-primary me-2 my-1" onClick={handleCopy}>
                 Copy text
             </button>
-            <button className="btn btn-sm btn-primary me-2" onClick={handleExtraSpaces}>
+            <button disabled={text.length === 0} className="btn btn-sm btn-primary me-2 my-1" onClick={handleExtraSpaces}>
                 Remove Extra Space
             </button>
             <div className="my-2">
                 <h6>Your text summary</h6>
                 <p>
-                    {text.split(" ").length - 1} words and {text.length} characters
+                    {text.split(" ").filter((element) => { return element.length !== 0 }).length} words and {text.length} characters
                 </p>
-                <p>{0.008 * (text.split(" ").length - 1)} Minutes to read </p>
+                <p>{0.008 * (text.split(" ").filter((element) => { return element.length !== 0 }).length)} Minutes to read </p>
 
                 <h6>Preview</h6>
                 <p>{text.length > 0 ? text : 'Enter something in text box to preview it'}</p>
